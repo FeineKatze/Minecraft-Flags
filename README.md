@@ -3,7 +3,8 @@ Java Flags (and other options) for better Minecraft Performance.
 
 ## Pre-Notes
 - **Disclaimer**: These work on my system (RTX 4070, Ryzen 7 5800X, 32GB DDR4 RAM); Performance may vary for you
-- Only tested on Linux (Arch with Wayland), open an issue if something doesn't work for Windows or MacOS
+- Only tested on Linux (Arch with **Wayland**), open an issue if something doesn't work for Windows or MacOS
+- Only tested with newest Fabric on 1.21.11
 - You also probably need to change some flags like `-XX:ParallelGCThreads=8` (most likely), and maybe `-XX:ReservedCodeCacheSize=512M` or similiar
 - I recommend PrismLauncher as the Minecraft Launcher. It's FOSS, similiar to MultiMC and definitely better than the default launcher
 - I would recommend using Java 25 (for the newest version of MC at least, 1.21.xx) and also GraalVM Enterprise (see setup below)
@@ -60,10 +61,12 @@ echo madvise > /sys/kernel/mm/transparent_hugepage/enabled
 ## Additional Performance Boosts for Linux (maybe)
 - Install FeralInteractives Gamemode (most likely in your Distros repo) and enable it in the Tweaks section and also use **gamemoderun** as a launch wrapper <img width="798" height="246" alt="image" src="https://github.com/user-attachments/assets/04baae73-17f4-45ca-b877-bbc4372d1252" />
 - Also it can help if you enable the use of system libraries <img width="798" height="296" alt="image" src="https://github.com/user-attachments/assets/f53c26d5-48d0-4be9-be09-eeb7ae0ba805" />
+- On older Forge (1.20.1) if you experience crashes with window creation try turning the glfw overwrite off
 ### Only NVIDIA
-- You can also add these Env Variables in the **Environment Variable** tab:
+- You can also add these Env Variables in the **Environment Variable** tab (these are for **wayland**):
 ```Environment Variables
 __GL_THREADED_OPTIMIZATIONS=1
 __GLX_VENDOR_LIBRARY_NAME=nvidia
 GBM_BACKEND=nvidia-drm
 ```
+- If you have problems with a window creation error, try setting __GL_THREADED_OPTIMIZATIONS=0
